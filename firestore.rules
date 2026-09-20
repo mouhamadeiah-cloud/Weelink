@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Connection probe for readiness test
+    match /_connection_probe/{probeId} {
+      allow read: if isValidId(probeId);
+    }
+
+    // User registrations collection
+    match /users/{userId}/registrations/{registrationId} {
+      allow read: if isValidId(userId) && isValidId(registrationId) && (isOwner(userId) || !isAuthenticated());
+      allow create, update: if isValidId(userId) && isValidId(registrationId) && (isOwner(userId) || !isAuthenticated());
+      allow delete: if isValidId(userId) && isValidId(registrationId) && isOwner(userId);
+    }
+
+    // User website projects collection
+    match /users/{userId}/projects/{projectId} {
+      allow read: if isValidId(userId) && isValidId(projectId);
+      allow create, update: if isValidId(userId) && isValidId(projectId) && (isOwner(userId) || !isAuthenticated());
+      allow delete: if isValidId(userId) && isValidId(projectId) && isOwner(userId);
+    }
+
+    // User individual slides collection
+    match /users/{userId}/slides/{slideId} {
+      allow read: if isValidId(userId) && isValidId(slideId);
+      allow create, update: if isValidId(userId) && isValidId(slideId) && (isOwner(userId) || !isAuthenticated());
+      allow delete: if isValidId(userId) && isValidId(slideId) && isOwner(userId);
+    }
+  }
+}
+

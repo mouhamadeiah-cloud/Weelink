@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "UserRegistration": {
+      "title": "UserRegistration",
+      "description": "User profile and registration details for Weelink pages",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user registration document"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User family name"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender of user"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address"
+        },
+        "pageTitle": {
+          "type": "string",
+          "description": "Display title for the professional website"
+        },
+        "authMethod": {
+          "type": "string",
+          "description": "Authentication method used"
+        },
+        "governorate": {
+          "type": "string",
+          "description": "Syrian governorate location"
+        },
+        "city": {
+          "type": "string",
+          "description": "City or municipality"
+        },
+        "neighborhood": {
+          "type": "string",
+          "description": "Neighborhood or district details"
+        },
+        "addressDescription": {
+          "type": "string",
+          "description": "Detailed street and building address"
+        },
+        "professionCategory": {
+          "type": "string",
+          "description": "Category of profession"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Specific professional specialty"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of last update"
+        }
+      },
+      "required": ["firstName", "lastName", "email", "pageTitle"]
+    },
+    "UserProject": {
+      "title": "UserProject",
+      "description": "Project website configuration containing all slides, layers, and style schemes",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the project"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user identifier"
+        },
+        "pages": {
+          "type": "string",
+          "description": "Serialized JSON string of all WebPage objects"
+        },
+        "activePageId": {
+          "type": "string",
+          "description": "Identifier of currently active page"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the website project"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last save timestamp"
+        }
+      },
+      "required": ["id", "userId", "pages", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/registrations/{registrationId}": {
+      "schema": "UserRegistration",
+      "description": "User registration and profile records stored per user"
+    },
+    "/users/{userId}/projects/{projectId}": {
+      "schema": "UserProject",
+      "description": "Website project designs, slides, and customization stored per user"
+    }
+  }
+}

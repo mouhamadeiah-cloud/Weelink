@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+/* Drag and Drop Cursor Styles */
+.cursor-grab {
+  cursor: grab !important;
+}
+
+.cursor-grab:active,
+.active\:cursor-grabbing:active {
+  cursor: grabbing !important;
+}
+
+/* =========================================================================
+   مكتبة التأثيرات البصرية والحركات الـ 25 (25 Visual Effects & Animations)
+   ========================================================================= */
+
+/* Pause on hover */
+.hover\:pause-animation:hover {
+  animation-play-state: paused !important;
+}
+
+/* 1. حركة الجريان وتدفق البورصة والأخبار لليسار */
+@keyframes animFlowLeft {
+  0% { transform: translateX(50%); }
+  100% { transform: translateX(-100%); }
+}
+.effect-flow-left {
+  animation: animFlowLeft var(--anim-duration, 10s) linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* 2. جريان وتدفق معاكس لليمين */
+@keyframes animFlowRight {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(50%); }
+}
+.effect-flow-right {
+  animation: animFlowRight var(--anim-duration, 10s) linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* 3. تدفق رأسي للأعلى */
+@keyframes animFlowUp {
+  0% { transform: translateY(50%); }
+  100% { transform: translateY(-100%); }
+}
+.effect-flow-up {
+  animation: animFlowUp var(--anim-duration, 10s) linear infinite;
+  will-change: transform;
+}
+
+/* 4. تدفق رأسي للأسفل */
+@keyframes animFlowDown {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(50%); }
+}
+.effect-flow-down {
+  animation: animFlowDown var(--anim-duration, 10s) linear infinite;
+  will-change: transform;
+}
+
+/* 5. تماوج الألوان العرضي */
+@keyframes animGradientWaveH {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.effect-gradient-wave-h {
+  background-image: linear-gradient(90deg, #3b82f6, #ec4899, #8b5cf6, #06b6d4, #f59e0b, #3b82f6) !important;
+  background-size: 300% 300% !important;
+  animation: animGradientWaveH var(--anim-duration, 3s) ease infinite !important;
+}
+span.effect-gradient-wave-h,
+p.effect-gradient-wave-h,
+h2.effect-gradient-wave-h,
+h3.effect-gradient-wave-h {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 6. تماوج الألوان الطولي */
+@keyframes animGradientWaveV {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+.effect-gradient-wave-v {
+  background-image: linear-gradient(180deg, #3b82f6, #ec4899, #8b5cf6, #06b6d4, #f59e0b, #3b82f6) !important;
+  background-size: 300% 300% !important;
+  animation: animGradientWaveV var(--anim-duration, 3s) ease infinite !important;
+}
+span.effect-gradient-wave-v,
+p.effect-gradient-wave-v,
+h2.effect-gradient-wave-v,
+h3.effect-gradient-wave-v {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 7. توهج طيفي متدرج */
+@keyframes animRainbowGlow {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+.effect-rainbow-glow {
+  animation: animRainbowGlow var(--anim-duration, 6s) linear infinite !important;
+}
+
+/* 8. بريق ضوئي منزلق */
+@keyframes animShimmer {
+  0% { filter: brightness(1) drop-shadow(0 0 0px transparent); }
+  50% { filter: brightness(1.35) drop-shadow(0 0 14px rgba(255, 255, 255, 0.7)); }
+  100% { filter: brightness(1) drop-shadow(0 0 0px transparent); }
+}
+.effect-shimmer {
+  animation: animShimmer var(--anim-duration, 2.5s) ease-in-out infinite;
+}
+
+/* 9. نبض النيون المضيء */
+@keyframes animNeonPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.95)) drop-shadow(0 0 28px rgba(139, 92, 246, 0.75));
+  }
+}
+.effect-neon-pulse {
+  animation: animNeonPulse var(--anim-duration, 2s) ease-in-out infinite;
+}
+
+/* 10. نبض حيوي هادئ */
+@keyframes animPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.effect-pulse {
+  animation: animPulse var(--anim-duration, 1.8s) ease-in-out infinite;
+}
+
+/* 11. طفو فضائي هادئ */
+@keyframes animFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.effect-float {
+  animation: animFloat var(--anim-duration, 2.5s) ease-in-out infinite;
+}
+
+/* 12. تأرجح متمايل (بندول) */
+@keyframes animSwing {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(4deg); }
+  40% { transform: rotate(-4deg); }
+  60% { transform: rotate(2deg); }
+  80% { transform: rotate(-2deg); }
+}
+.effect-swing {
+  transform-origin: top center;
+  animation: animSwing var(--anim-duration, 2.2s) ease-in-out infinite;
+}
+
+/* 13. تمايل مرح مرن */
+@keyframes animWobble {
+  0%, 100% { transform: translateX(0%); }
+  15% { transform: translateX(-4%) rotate(-3deg); }
+  30% { transform: translateX(3%) rotate(3deg); }
+  45% { transform: translateX(-2%) rotate(-1.5deg); }
+  60% { transform: translateX(1.5%) rotate(1deg); }
+  75% { transform: translateX(-1%) rotate(0deg); }
+}
+.effect-wobble {
+  animation: animWobble var(--anim-duration, 2s) ease-in-out infinite;
+}
+
+/* 14. تنفس ناعم مستمر */
+@keyframes animBreathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35)); }
+}
+.effect-breathe {
+  animation: animBreathe var(--anim-duration, 3s) ease-in-out infinite;
+}
+
+/* 15. دوران بطيء مستمر 360° */
+@keyframes animRotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.effect-rotate-slow {
+  animation: animRotateSlow var(--anim-duration, 8s) linear infinite;
+}
+
+/* 16. صعود تدريجي ناعم */
+@keyframes animSlideUp {
+  0% { transform: translateY(24px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.effect-slide-up {
+  animation: animSlideUp var(--anim-duration, 1s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 17. انزلاق سريع من اليمين */
+@keyframes animSlideRight {
+  0% { transform: translateX(32px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.effect-slide-right {
+  animation: animSlideRight var(--anim-duration, 1s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 18. انزلاق سريع من اليسار */
+@keyframes animSlideLeft {
+  0% { transform: translateX(-32px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.effect-slide-left {
+  animation: animSlideLeft var(--anim-duration, 1s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 19. تكبير مع ارتداد مرن */
+@keyframes animZoomBounce {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  80% { transform: scale(0.96); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.effect-zoom-bounce {
+  animation: animZoomBounce var(--anim-duration, 1.2s) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* 20. تدحرج ودخول ديناميكي */
+@keyframes animRollIn {
+  0% { transform: translateX(80px) rotate(120deg); opacity: 0; }
+  100% { transform: translateX(0px) rotate(0deg); opacity: 1; }
+}
+.effect-roll-in {
+  animation: animRollIn var(--anim-duration, 1.2s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 21. انقلاب أفقي ثلاثي الأبعاد */
+@keyframes animFlipX {
+  0% { transform: perspective(600px) rotateX(80deg); opacity: 0; }
+  60% { transform: perspective(600px) rotateX(-10deg); opacity: 1; }
+  100% { transform: perspective(600px) rotateX(0deg); opacity: 1; }
+}
+.effect-flip-x {
+  transform-style: preserve-3d;
+  animation: animFlipX var(--anim-duration, 1.2s) ease-out both;
+}
+
+/* 22. انقلاب رأسي ثلاثي الأبعاد */
+@keyframes animFlipY {
+  0% { transform: perspective(600px) rotateY(80deg); opacity: 0; }
+  60% { transform: perspective(600px) rotateY(-10deg); opacity: 1; }
+  100% { transform: perspective(600px) rotateY(0deg); opacity: 1; }
+}
+.effect-flip-y {
+  transform-style: preserve-3d;
+  animation: animFlipY var(--anim-duration, 1.2s) ease-out both;
+}
+
+/* 23. شريط مطاطي تفاعلي */
+@keyframes animRubberBand {
+  0% { transform: scale3d(1, 1, 1); }
+  30% { transform: scale3d(1.2, 0.8, 1); }
+  40% { transform: scale3d(0.85, 1.15, 1); }
+  50% { transform: scale3d(1.1, 0.9, 1); }
+  65% { transform: scale3d(0.97, 1.03, 1); }
+  75% { transform: scale3d(1.02, 0.98, 1); }
+  100% { transform: scale3d(1, 1, 1); }
+}
+.effect-rubber-band {
+  animation: animRubberBand var(--anim-duration, 1.4s) ease-in-out both;
+}
+
+/* 24. وميض خاطف لافت */
+@keyframes animFlashBurst {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.25; }
+}
+.effect-flash-burst {
+  animation: animFlashBurst var(--anim-duration, 1s) ease-in-out infinite;
+}
+
+/* 25. اهتزاز تنبيهي نشط */
+@keyframes animShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.effect-shake {
+  animation: animShake var(--anim-duration, 1s) ease-in-out infinite;
+}
+
+/* Prevent horizontal overflow on window without breaking position: sticky */
+html, body {
+  overflow-x: clip;
+}
+
+/* =========================================================================
+   Page Scrollbar & Preview Stage No-Scrollbar Rule
+   ========================================================================= */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 6px;
+  border: 2px solid rgba(241, 245, 249, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Eliminate scrollbar specifically in the preview stage & canvas */
+#future-public-webpage,
+#preview-stage-container,
+.no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#future-public-webpage::-webkit-scrollbar,
+#preview-stage-container::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 6px;
+  border: 2px solid #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "14.09 Weelink",
+  "description": "منصة Weelink - منشئ المواقع والشرائح التفاعلية مع دعم الشرائح الفارغة والعناصر الديناميكية",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
